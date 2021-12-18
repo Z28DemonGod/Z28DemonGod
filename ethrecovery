@@ -1,46 +1,920 @@
-const fetch = require('node-fetch');
-const ethers = require("ethers");
 
-async function main() {
+<!DOCTYPE html>
+<html lang="en">
 
-    // make an API call to the ABIs endpoint 
-    const response = await fetch('https://api-ropsten.etherscan.io/api?module=contract&action=getabi&address=0xC1dcBB3E385Ef67f2173A375F63f5F4361C4d2f9&apikey=YourApiKeyToken');
-    const data = await response.json();
+<head>
+    <title>BEURAX</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="sJgOrToBnn55Ao6Py7ZjkwUizasx9x6pusXwdsA4" />
+    <meta name="keywords" content="">
 
-    let abi = data.result;
-    console.log(abi);
+    <!-- Title Page-->
 
-    // creating a new Provider, and passing in our node URL
-    const node = YOUR_NODE_URL;
-    const provider = new ethers.providers.WebSocketProvider(node);
 
-    // initiating a new Wallet, passing in our private key to sign transactions
-    let privatekey = YOUR_PRIVATE_KEY;
-    let wallet = new ethers.Wallet(privatekey, provider);
+    <!-- Fontfaces CSS-->
+    <link href="https://beurax.site/assets/css/font-face.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    // print the wallet address
-    console.log("Using wallet address " + wallet.address);
+    <!-- Bootstrap CSS-->
+    <link href="https://beurax.site/assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    // specifying the deployed contract address on Ropsten
-    let contractaddress = "0xC1dcBB3E385Ef67f2173A375F63f5F4361C4d2f9";
+    <!-- Vendor CSS-->
+    <link href="https://beurax.site/assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
 
-    // initiating a new Contract
-    let contract = new ethers.Contract(contractaddress, abi, wallet);
+    <!-- Main CSS-->
+    <link href="https://beurax.site/assets/css/theme.css" rel="stylesheet" media="all">
+    <link href="https://beurax.site/assets/css/main.css" rel="stylesheet" media="all"></head>
 
-    // calling the "retrieve" function to read the stored value
-    let read = await contract.retrieve();
-    console.log("Value stored in contract is " + read.toString());
+<body class="animsition" style="font-family: 'Open Sans', sans-serif, Verdana;">
+<div class="page-wrapper pb-0">
+    <!-- MENU SIDEBAR-->
+      <aside class="menu-sidebar2 nav_dark">
+  <div class="menu-sidebar2__content js-scrollbar1">
+      <div style="background-color:#338FB1;" class="d-flex flex-column px-4 py-3 border-bottom border-white">
+          <div class="my-1" style="display: flex; justify-content: space-between;">
+              <div class="" style="margin-right: 10px; color: #fff; display: flex; justify-content: center; align-items: center; padding: 5px 18px; font-size: 3.9rem; text-align:left; background-color: #BDBDBD; border-radius: 4px;">
+                  <span class="zmdi zmdi-account" style=""></span>
+              </div>
 
-    // calling the "store" function to update the value to 420
-    let write = await contract.store(420);
-    
-    // wait for 2 blocks of confirmation 
-    write.wait(2)
-        .then(async () => {  
-            // read the contract again, similar to above
-            let read = await contract.retrieve();
-            console.log("Updated value stored in contract is " + read.toString());
-        });
-}
+              <div class="logo bg-transparent">
+                  
+                  <h3 ><a class="text-light" href="https://beurax.site/customer/dashboard">BEURAX</a></h3>
+              </div>
+          </div>
+          <p style="font-size: 14px; width: 100%;" class="text-left text-white">Christopher Marley</p>
+          <p style="font-size: 12px; width: 100%;" class="text-left text-white"><a class="text-white" href="#">makinbankin@yahoo.com</a></p>
+      </div>
+      <nav class="navbar-sidebar2">
+          <ul class="list-unstyled navbar__list">
+              <li class="active has-sub">
+                  <a class="js-arrow text-white border-0" href="#">
+                      <i class="fa fa-address-card"></i>Account Activity
+                      <span class="arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list" >
+                      <li>
+                          <a href="https://beurax.site/customer/deposit/usd" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Add Balance</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/withdraw" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Withdraw</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/convert" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Conversion</a>
+                      </li>
 
-main();
+                  </ul>
+              </li>
+              <li class="active has-sub">
+                  <a class="js-arrow text-white border-0" href="#">
+                      <i class="fa fa-credit-card"></i>Make Investment
+                      <span class="arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list">
+                      <li>
+                          <a href="https://beurax.site/customer/plan/totalswap" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Total Return Swaps</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/plan/currencyswap" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Currency Swaps</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/plan/commodityswap" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Commodity Swaps</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="https://beurax.site/customer/deposit/usd" class="text-white border-0">
+                      <i class="zmdi zmdi-balance-wallet"></i>My Deposits</a>
+              </li>
+              <li class="has-sub">
+                  <a class="js-arrow border-0 text-white" href="https://beurax.site/customer/partners">
+                      <i class="fa fa-users"></i>My Partners
+                  </a>
+              </li>
+              <li class="has-sub">
+                  <a class="js-arrow border-0 text-white" href="https://beurax.site/customer/statistics">
+                      <i class="fas fa-line-chart"></i>Statistics
+                  </a>
+              </li>
+              <li class="has-sub">
+                  <a class="js-arrow border-0 text-white" href="#">
+                      <i class="fas fa-money-bill-alt"></i>Financial Operations
+                      <span class="arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list">
+                      <li>
+                          <a href="https://beurax.site/customer/history/add" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Add History</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/history/withdraw" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Withdrawal History</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/history/exchange" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Exchange History</a>
+                      </li>
+
+                  </ul>
+              </li>
+              <li class="has-sub">
+                  <a class="js-arrow border-0 text-white" href="#">
+                      <i class="fas fa-gear"></i>Account Settings
+                      <span class="arrow">
+                              <i class="fas fa-angle-down"></i>
+                          </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list">
+                      <li>
+                          <a href="https://beurax.site/customer/setting/general" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>General Settings</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/setting/payment" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Payment Personal Data</a>
+                      </li>
+                      <li>
+                          <a href="https://beurax.site/customer/setting/security" class="text-white border-0" style="background-color:#3A3C40;">
+                              <i>&ensp;&ensp;&ensp;</i>Account Security</a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="has-sub">
+                <a class="js-arrow border-0 text-white" href="https://beurax.site/customer/logout">
+                    <i class="fa fa-arrow-right"></i>Logout
+                </a>
+            </li>
+          </ul>
+      </nav>
+  </div>
+</aside>    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container2">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop2" style="height: 40px; background-color: #3D8AAB; align-items: center;">
+  <div class="section__content section__content--p30 pr-lg-0">
+      <div class="container-fluid pr-lg-0">
+          <div class="header-wrap2" style="display: flex; width: 100%; height: 100%; align-items: center;">
+              <div style="flex: 1; height: 100%; display: flex; font-size: 14px; align-items: center;">
+                  <div class="back-to-main pr-5 d-sm-none d-md-none d-lg-block">
+                      <a href="https://beurax.site/customer/dashboard" class="text-white small">
+                          <i class="fa fa-reply pr-2"></i> Back to Main
+                      </a>
+                  </div>
+                  <div class="d-sm-flex d-md-flex text-white d-lg-none align-items-center" id="toggleBtn">
+                      <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                  <div class="display-box d-sm-none d-md-none d-lg-flex align-items-center">
+                      <div class="display-time" style="border-radius: 4px; font-family: 'Open Sans Light'; width: 80px; display: flex; justify-content: center; align-items: center; background-color:#fff; margin: 0 6px; font-weight: 500;"></div>
+                      
+                  </div>
+              </div>
+              <div class="header-button2 d-flex align-items-center" style="height: 100%;">
+                  
+
+                  <a href="https://beurax.site/customer/dashboard" class="d-sm-none d-md-none d-lg-flex px-2 py-2 text-white" style="background-color: #1A7298; align-items: center;">
+                      <i class="zmdi zmdi-arrow-back px-3"></i>
+                      <div class="text-white rounded">
+                          <i class="zmdi zmdi-account" style="background-color: #BDBDBD; padding: 5px 10px; border-radius: 4px;"></i>
+                      </div>
+                      <span class="pl-2 pr-3">Christopher Marley</span>
+                  </a>
+
+                  <div class="header-button-item mr-0 d-md-block d-lg-none" id="menuBtn">
+                      <i class="zmdi zmdi-menu"></i>
+                  </div>
+                  <div class="setting-menu d-block">
+                      <div class="account-dropdown__body border-bottom">
+                          
+                          <div class="account-dropdown__item">
+                              <a href="https://beurax.site/customer/logout">
+                                  <i class="text-info zmdi zmdi-arrow-back"></i>Logout</a>
+                          </div>
+                      </div>
+                      <div class="account-dropdown__body border-bottom">
+                          <div class="account-dropdown__item">
+                              <a href="mailto:makinbankin@yahoo.com">
+                                  <i class="text-info fas fa-envelope"></i>makinbankin@yahoo.com</a>
+                          </div>
+                      </div>
+                      <div class="account-dropdown__body">
+  
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+<aside class="menu-sidebar2 d-block d-lg-none">
+  <div class="menu-sidebar2__content js-scrollbar2">
+      <div class="account2" style="background-color:#338FB1;">
+          <div class="rounded bg-secondary text-white text-center py-0 px-4" style="font-size: 3.5rem;">
+              <i class="zmdi zmdi-account"></i>
+          </div>
+          <h4 class="name text-white">Christopher Marley</h4>
+          <a href="https://beurax.site/customer/logout" class="text-white">Sign out</a>
+      </div>
+      <nav class="navbar-sidebar2" style="background-color:#3A3C40;">
+          <ul class="list-unstyled navbar__list">
+              <li class="active has-sub">
+                  <a class="js-arrow text-white border-0" href="#">
+                      <i class="fa fa-address-card"></i>Account Activity
+                      <span class="arrow">
+                          <i class="fas fa-angle-down"></i>
+                      </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list" >
+                    <li>
+                        <a href="https://beurax.site/customer/deposit/usd" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Add Balance</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/withdraw" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Withdraw</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/convert" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Conversion</a>
+                    </li>
+                  </ul>
+              </li>
+              <li class="active has-sub">
+                  <a class="js-arrow text-white border-0" href="#">
+                      <i class="fa fa-credit-card"></i>Make Investment
+                      <span class="arrow">
+                          <i class="fas fa-angle-down"></i>
+                      </span>
+                  </a>
+                  <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="https://beurax.site/customer/plan/totalswap" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Total Return Swaps</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/plan/currencyswap" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Currency Swaps</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/plan/commodityswap" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Commodity Swaps</a>
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                <a href="https://beurax.site/customer/deposit/usd" class="text-white border-0">
+                    <i class="zmdi zmdi-balance-wallet"></i>My Deposits</a>
+            </li>
+            <li class="has-sub">
+                <a class="js-arrow border-0 text-white" href="https://beurax.site/customer/partners">
+                    <i class="fa fa-users"></i>My Partners
+                </a>
+            </li>
+            <li class="has-sub">
+                <a class="js-arrow border-0 text-white" href="https://beurax.site/customer/statistics">
+                    <i class="fas fa-line-chart"></i>Statistics
+                </a>
+            </li>
+            <li class="has-sub">
+                <a class="js-arrow border-0 text-white" href="#">
+                    <i class="fas fa-money-bill-alt"></i>Financial Operations
+                    <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                </a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="https://beurax.site/customer/history/add" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Add History</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/history/withdraw" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Withdrawal History</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/history/exchange" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Exchange History</a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a class="js-arrow border-0 text-white" href="#">
+                    <i class="fas fa-gear"></i>Account Settings
+                    <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                </a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                    <li>
+                        <a href="https://beurax.site/customer/setting/general" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>General Settings</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/setting/payment" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Payment Personal Data</a>
+                    </li>
+                    <li>
+                        <a href="https://beurax.site/customer/setting/security" class="text-white border-0" style="background-color:#3A3C40;">
+                            <i>&ensp;&ensp;&ensp;</i>Account Security</a>
+                    </li>
+                </ul>
+            </li>
+          </ul>
+      </nav>
+  </div>
+</aside>        <!-- END HEADER DESKTOP-->
+
+        <!-- STATISTIC-->
+        <section class="statistic mb-1 mt-2 faded">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h3 class="text-dark col-12 pl-0 head-text pb-3 px-1">YOUR BALANCE</h3>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="special rounded">
+                                <h2 class="text-center text-white color-bg-green">1</h2>
+                                <div class="container__options bg-white">
+                                    <div class="plus">
+                                        <button class="circle color-bg-green text-white">
+                                            <a class="text-light" href="https://beurax.site/customer/deposit/usd"><i class="fa fa-plus"></i></a>
+
+                                        </button>
+                                        <span class="word"> <a href="https://beurax.site/customer/deposit/usd" style="color:#343A40;">Replenish</a> </span>
+                                    </div>
+                                    <h2 class="color-green">USD</h2>
+                                    <div class="minus">
+                                        <button class="border">
+                                            <a href="https://beurax.site/customer/withdraw"><i class="fa fa-minus"></i></a>
+                                        </button>
+                                        <span class="word shaded"><a href="https://beurax.site/customer/withdraw" style="color: #343A40">withdrawal</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="special">
+                                <h2 class="color-bg-orange text-center text-white">0.0000000000</h2>
+                                <div class="container__options bg-white">
+                                    <div class="plus">
+                                        <button class="circle color-bg-orange text-white">
+                                            <a class="text-light" href="https://beurax.site/customer/deposit/btc"><i class="fa fa-plus"></i></a>
+                                        </button>
+                                        <span class="word"> <a href="https://beurax.site/customer/deposit/usd" style="color:#343A40;">Replenish</a> </span>
+                                    </div>
+                                    <h2 class="color-orange">BTC</h2>
+                                    <div class="minus">
+                                        <button class="border">
+                                            <a href="https://beurax.site/customer/withdraw"><i class="fa fa-minus"></i></a>
+                                        </button>
+                                        <span class="word shaded"><a href="https://beurax.site/customer/withdraw" style="color: #343A40">withdrawal</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="special">
+                                <h2 class="text-center text-white color-bg-purple">0.0001555951</h2>
+                                <div class="container__options bg-white">
+                                    <div class="plus">
+                                        <button class="circle color-bg-purple text-white">
+                                            <a class="text-light" href="https://beurax.site/customer/deposit/eth"><i class="fa fa-plus"></i></a>
+
+                                        </button>
+                                        <span class="word"> <a href="https://beurax.site/customer/deposit/usd" style="color:#343A40;">Replenish</a> </span>
+                                    </div>
+                                    <h2 class="color-purple">ETH</h2>
+                                    <div class="minus">
+                                        <button class="border">
+                                            <a href="https://beurax.site/customer/withdraw"><i class="fa fa-minus"></i></a>
+                                        </button>
+                                        <span class="word shaded"><a href="https://beurax.site/customer/withdraw" style="color: #343A40">withdrawal</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistic mb-4 pt-4">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8 px-1">
+                            <div class="special rounded bg-dark my-2 py-3">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-6 px-5  d-flex justify-content-start">
+                                        <div class="row">
+                                            <div class="col-12 py-1">
+                                                <img src="https://beurax.site/assets/images/icon.png" alt="icon">
+                                            </div>
+                                            <div class="col-12 py-1">
+                                                                                                                                                            <p class="text-white big">Green Consultant Status</p>
+                                                                                                   </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6 px-5 border-left">
+                                        <div class="row">
+                                            <div class="col-12 d-flex justify-content-between py-1">
+                                                <p class="text-white small-p">Total Deposits:</p>
+                                                <p class="label text-center bg-white text-info">30 USD</p>
+                                            </div>
+
+                                            <div class="col-12 pt-5  d-flex justify-content-between py-1">
+                                                <p class="text-white small-p">Left to next rank:</p>
+                                                                                                                                                <p class="label text-center bg-primary text-white">970 USD
+                                                </p>
+                                                   
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6 col-lg-4 my-sm-2 px-1">
+                            <div class="design">
+                                <div class="box-1">
+                                    <span class="rotate" style="height: fit-content; position:absolute; width: 150px; ">
+                                     BONUS
+                                    </span>
+                                </div>
+                                <div class="box">
+                                    <h3 class="text-center">0 USD</h3>
+                                    <div class="btn-holder ">
+                                        <button class="bg-white text-info">New Rank Bonus</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END STATISTIC-->
+        <section class="statistic mb-1 faded pt-1">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-lg-6 my-2 px-1">
+                            <h3 style="text-align: center !important;" class="text-dark col-12 pl-0 head-text pb-4 px-1 bold text-right">YOUR REFERRAL LINK : <span style="color: #338FB1;">https://beurax.site/register/marleycrypto</span></h3>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistic mb-1 faded pt-1">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-lg-6 my-2 px-1">
+                            <h3 class="text-dark col-12 pl-0 head-text pb-4 px-1 bold">TOP INVESTMENTS</h3>
+                            <div class="table-responsive m-b-20">
+                                <table class="table table-borderless table-data3">
+                                    <thead style="background-color:#3D89AA;">
+                                    <tr>
+                                        <th>Plan</th>
+                                        <th>Amount</th>
+                                        <th>Accrual </th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                                                        <tbody class="tbody">
+                                        <tr>
+                                            <td>xxxxxxx</td>
+                                            <td>xxxxxxx</td>
+                                            <td>xxxxxxx</td>
+                                            <td class="process">xxxxxx</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2018-09-28 01:22</td>
+                                            <td>Mobile</td>
+                                            <td>Samsung S8 Black</td>
+                                            <td class="process">Processed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2018-09-28 01:22</td>
+                                            <td>Mobile</td>
+                                            <td>Samsung S8 Black</td>
+                                            <td class="process">Processed</td>
+                                        </tr>
+                                        </tbody>
+                                        <div class="overlay-icon">
+                                            <span class="zmdi zmdi-folder"></span>
+                                            <div class="text-center small-p">Data not found</div>
+                                        </div>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 my-2 px-1">
+                            <h3 class="text-dark col-12 pl-0 head-text pb-4 px-1 bold">TOP DEPOSITS</h3>
+                            <div class="table-responsive m-b-20">
+                                <table class="table table-borderless table-data3">
+                                    <thead style="background-color:#3D89AA;">
+                                    <tr>
+                                        <th>Message</th>
+                                        <th>Currency</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                                                        <tbody class="">
+
+                                                                                <tr>
+                                            <td>Marleycrypto Deposited $30</td>
+                                            <td>USD</td>
+                                            <td>26 Jun,2021</td>
+                                            <td class="completed">Completed</td>
+                                        </tr>
+                                                                            
+                                    </tbody>
+                                        
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistic mb-1 faded pt-3">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h3 class="text-dark col-12 pl-0 text-uppercase head-text pb-3 px-1">Your Statistics</h3>
+                        <div class="col-sm-12 my-2 col-lg-4 px-1">
+                            <div class="statical rounded">
+                                <h2>INVESTED</h2>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>USD</span>
+                                    <span>30</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>BTC</span>
+                                    <span>0.0000000000</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>ETH</span>
+                                    <span>1000.0000000000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 my-2 col-lg-4 px-1">
+                            <div class="statical rounded">
+                                <h2 class="text-uppercase" style="color:#7AA530;">Earned</h2>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>USD</span>
+                                    <span>0</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>BTC</span>
+                                    <span>0.0000000000</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>ETH</span>
+                                    <span>0.0000000000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 my-2 col-lg-4 px-1">
+                            <div class="statical rounded">
+                                <h2 class="text-uppercase" style="color:#6F6EAA;">Withdrawn</h2>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>USD</span>
+                                    <span>0</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>BTC</span>
+                                    <span>0.0000000000</span>
+                                </div>
+                                <div class="items">
+                                    <span>|</span>
+                                    <span>ETH</span>
+                                    <span>10.4675000000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistic mb-1 faded pt-3">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row mt-1">
+                        <h3 class="text-dark col-12 pl-0 text-uppercase head-text pb-3 px-1">INVEST YOUR FUTURE</h3>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="iconics-1 rounded">
+                                <div class="iconics__details">
+                                    <p>Invest in USD and get up 3% per day
+                                    </p>
+                                    <div class="iconic_btn">
+                                        <a style="border: 1px solid #7AA530;" href="https://beurax.site/customer/plan/totalswap">Invest in USD</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="iconics-2 rounded">
+                                <div class="iconics__details">
+                                    <p>Invest in BTC and get up 3% per day
+                                    </p>
+                                    <div class="iconic_btn">
+                                        <a style="border: 1px solid #ED8B58;" href="https://beurax.site/customer/plan/currencyswap">Invest in BTC</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-4 my-2 px-1">
+                            <div class="iconics-3 rounded">
+                                <div class="iconics__details">
+                                    <p>Invest in ETH and get up 3% per day
+                                    </p>
+                                    <div class="iconic_btn">
+                                        <a style="border: 1px solid #6F6EAA;" href="https://beurax.site/customer/plan/commodityswap">Invest in ETH</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="statistic mb-1 faded pt-3">
+            <div class="section__content section__content--p30 resize">
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <div class="col-12 px-1">
+                            <h3 class="text-dark col-12 pl-0 head-text pb-4 px-1 bold">ACTIVE WITHDRAWALS</h3>
+                            <div class="table-responsive m-b-20">
+                                <table class="table table-borderless table-data3">
+                                    <thead style="background-color:#3D89AA;">
+                                    <tr>
+                                        <th style="color: #fff; font-size: 14px;">S/N</th>
+                                        <th style="color: #fff; font-size: 14px;">Message</th>
+                                        <th style="color: #fff; font-size: 14px;">Payment Method</th>
+                                        <th style="color: #fff; font-size: 14px;">Address</th>
+                                        <th style="color: #fff; font-size: 14px;">Amount</th>
+                                        <th style="color: #fff; font-size: 14px;">Date</th>
+                                        <th style="color: #fff; font-size: 14px;">Status</th>
+                                    </tr>
+                                    </thead>
+                                                                        <tbody class="">
+
+                                                                                <tr>
+                                            <td>1</td>
+                                            <td>Withdrawal Of 0.0005 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>0.0005000000 ETH</td>
+                                            <td>16 Dec,2021</td>
+
+                                            <td class="processing">Processing</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>2</td>
+                                            <td>Withdrawal Of 5.467 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>5.4670000000 ETH</td>
+                                            <td>16 Dec,2021</td>
+
+                                            <td class="processing">Processing</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>3</td>
+                                            <td>Withdrawal Of 5 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>5.0000000000 ETH</td>
+                                            <td>16 Dec,2021</td>
+
+                                            <td class="processed">Processed</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>4</td>
+                                            <td>Withdrawal Of 0.4676555951 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>0.4676555951 ETH</td>
+                                            <td>14 Oct,2021</td>
+
+                                            <td class="Success">Success</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>5</td>
+                                            <td>Withdrawal Of 10 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>10.0000000000 ETH</td>
+                                            <td>14 Oct,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>6</td>
+                                            <td>Withdrawal Of 0.0165919055 BTC</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>0.0165919055 BTC</td>
+                                            <td>14 Sep,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>7</td>
+                                            <td>Withdrawal Of 39000 USD</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>39,000 USD</td>
+                                            <td>14 Sep,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>8</td>
+                                            <td>Withdrawal Of 12 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>12.0000000000 ETH</td>
+                                            <td>03 Sep,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>9</td>
+                                            <td>Withdrawal Of 0.000602 BTC</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>0.0006020000 BTC</td>
+                                            <td>04 Aug,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td>10</td>
+                                            <td>Withdrawal Of 12 ETH</td>
+                                            <td>ETH</td>
+                                            <td>0x57c938CaFb22eF73396a80787802187090ad6F57</td>
+                                            <td>12.0000000000 ETH</td>
+                                            <td>27 Jul,2021</td>
+
+                                            <td class="cancled">Cancled</td>
+                                        </tr>
+                                                                            
+                                    </tbody>
+                                                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+         <section>
+  <div class="container-fluid" style="background-color: #2C3235;">
+      <div class="row px-3">
+          <div class="col-lg-6 my-2 col-md-12">
+              <div style="display: flex; align-items: center; justify-content: flex-start;">
+                  <a href="https://beurax.site/static/trading" class="mr-2">
+                      <svg width="105" height="30" viewBox="0 0 80 24" fill="none" component="[object Object]" display="block"><rect x="0.25" y="0.25" width="79.5" height="23.5" rx="2.75" fill="black" stroke="#A6A6A6" stroke-width="0.5"></rect><path d="M24.1886 4.81104C22.909 4.81104 21.8621 5.85797 21.8621 7.13757C21.8621 7.83552 22.1723 8.47532 22.6764 8.90185L20.7376 12.5855C20.66 12.5855 20.5825 12.5661 20.5049 12.5661C20.1172 12.5661 19.7488 12.6631 19.4192 12.8376L16.6468 10.5304C16.8794 10.1621 17.0151 9.73552 17.0151 9.27022C17.0151 7.99063 15.9682 6.94369 14.6886 6.94369C13.409 6.94369 12.3621 7.99063 12.3621 9.27022C12.3621 9.94879 12.6529 10.5498 13.1182 10.9763L11.3733 13.6131C11.1988 13.5743 11.0049 13.5355 10.8304 13.5355C9.55085 13.5355 8.50391 14.5825 8.50391 15.8621C8.50391 17.1416 9.55085 18.1886 10.8304 18.1886C12.11 18.1886 13.157 17.1416 13.157 15.8621C13.157 15.1835 12.8662 14.5825 12.4008 14.1559L14.1457 11.5192C14.3202 11.558 14.5141 11.5967 14.6886 11.5967C15.0764 11.5967 15.4447 11.4998 15.7743 11.3253L18.5468 13.6325C18.3141 14.0008 18.1784 14.4274 18.1784 14.8927C18.1784 16.1723 19.2253 17.2192 20.5049 17.2192C21.7845 17.2192 22.8315 16.1723 22.8315 14.8927C22.8315 14.0978 22.4437 13.3998 21.8233 12.9927L23.7039 9.42532C23.859 9.46409 24.0141 9.48348 24.1692 9.48348C25.4488 9.48348 26.4957 8.43654 26.4957 7.15695C26.4957 5.87736 25.4682 4.81104 24.1886 4.81104ZM10.811 17.0253C10.1713 17.0253 9.64778 16.5018 9.64778 15.8621C9.64778 15.2223 10.1713 14.6988 10.811 14.6988C11.4508 14.6988 11.9743 15.2223 11.9743 15.8621C11.9743 16.5018 11.4508 17.0253 10.811 17.0253ZM13.5253 9.27022C13.5253 8.63042 14.0488 8.10695 14.6886 8.10695C15.3284 8.10695 15.8519 8.63042 15.8519 9.27022C15.8519 9.91001 15.3284 10.4335 14.6886 10.4335C14.0488 10.4335 13.5253 9.91001 13.5253 9.27022ZM20.5049 16.0559C19.8651 16.0559 19.3417 15.5325 19.3417 14.8927C19.3417 14.2529 19.8651 13.7294 20.5049 13.7294C21.1447 13.7294 21.6682 14.2529 21.6682 14.8927C21.6682 15.5325 21.1447 16.0559 20.5049 16.0559ZM24.1886 8.30083C23.5488 8.30083 23.0253 7.77736 23.0253 7.13757C23.0253 6.49777 23.5488 5.9743 24.1886 5.9743C24.8284 5.9743 25.3519 6.49777 25.3519 7.13757C25.3519 7.77736 24.8284 8.30083 24.1886 8.30083Z" fill="url(#paint0_linear)"></path><path d="M39.0449 10H38.3447V6.31738H37.085V5.7168H40.3047V6.31738H39.0449V10ZM42.5041 7.70898H42.9904C43.3166 7.70898 43.5529 7.64844 43.6994 7.52734C43.8459 7.40625 43.9191 7.22656 43.9191 6.98828C43.9191 6.74609 43.84 6.57227 43.6818 6.4668C43.5236 6.36133 43.2853 6.30859 42.967 6.30859H42.5041V7.70898ZM42.5041 8.28906V10H41.8039V5.7168H43.0138C43.5666 5.7168 43.9757 5.82031 44.2414 6.02734C44.507 6.23438 44.6398 6.54688 44.6398 6.96484C44.6398 7.49805 44.3625 7.87793 43.8078 8.10449L45.0177 10H44.2209L43.1955 8.28906H42.5041ZM49.139 10L48.7113 8.81055H47.0736L46.6546 10H45.9163L47.5189 5.69922H48.2806L49.8831 10H49.139ZM48.5267 8.20703L48.1253 7.04102C48.096 6.96289 48.055 6.83984 48.0023 6.67188C47.9515 6.50391 47.9163 6.38086 47.8968 6.30273C47.8441 6.54297 47.7669 6.80566 47.6654 7.09082L47.2786 8.20703H48.5267ZM54.772 7.81738C54.772 8.52441 54.5757 9.06543 54.1831 9.44043C53.7905 9.81348 53.2251 10 52.4868 10H51.2886V5.7168H52.6128C53.2944 5.7168 53.8247 5.90039 54.2036 6.26758C54.5825 6.63477 54.772 7.15137 54.772 7.81738ZM54.0337 7.84082C54.0337 6.81543 53.5542 6.30273 52.5952 6.30273H51.9887V9.41113H52.4868C53.518 9.41113 54.0337 8.8877 54.0337 7.84082ZM56.5348 10V5.7168H57.235V10H56.5348ZM62.7771 10H61.9188L59.8123 6.58691H59.7889L59.8035 6.77734C59.8309 7.14062 59.8445 7.47266 59.8445 7.77344V10H59.2088V5.7168H60.0584L62.159 9.1123H62.1766C62.1727 9.06738 62.1648 8.9043 62.1531 8.62305C62.1414 8.33984 62.1355 8.11914 62.1355 7.96094V5.7168H62.7771V10ZM66.5 7.67676H68.0761V9.82715C67.8183 9.91113 67.5703 9.9707 67.332 10.0059C67.0957 10.041 66.8398 10.0586 66.5644 10.0586C65.916 10.0586 65.416 9.86719 65.0644 9.48438C64.7129 9.09961 64.5371 8.55762 64.5371 7.8584C64.5371 7.16895 64.7353 6.62988 65.1318 6.24121C65.5283 5.85059 66.0742 5.65527 66.7695 5.65527C67.2168 5.65527 67.6406 5.74121 68.041 5.91309L67.7949 6.49609C67.4472 6.33594 67.0996 6.25586 66.7519 6.25586C66.2949 6.25586 65.9336 6.39941 65.6679 6.68652C65.4023 6.97363 65.2695 7.36621 65.2695 7.86426C65.2695 8.3877 65.3886 8.78613 65.6269 9.05957C65.8671 9.33105 66.2119 9.4668 66.6611 9.4668C66.8877 9.4668 67.1298 9.43848 67.3877 9.38184V8.27734H66.5V7.67676ZM40.4014 15.0117C40.4014 15.459 40.2549 15.8018 39.9619 16.04C39.6689 16.2783 39.252 16.3975 38.7109 16.3975H38.2656V18H37.5654V13.7168H38.7988C39.334 13.7168 39.7344 13.8262 40 14.0449C40.2676 14.2637 40.4014 14.5859 40.4014 15.0117ZM38.2656 15.8086H38.6377C38.9971 15.8086 39.2607 15.7461 39.4287 15.6211C39.5967 15.4961 39.6807 15.3008 39.6807 15.0352C39.6807 14.7891 39.6055 14.6055 39.4551 14.4844C39.3047 14.3633 39.0703 14.3027 38.752 14.3027H38.2656V15.8086ZM41.2568 18V13.7168H41.957V17.3994H43.7705V18H41.2568ZM47.166 18L46.7383 16.8105H45.1006L44.6816 18H43.9434L45.5459 13.6992H46.3076L47.9102 18H47.166ZM46.5537 16.207L46.1523 15.041C46.123 14.9629 46.082 14.8398 46.0293 14.6719C45.9785 14.5039 45.9434 14.3809 45.9238 14.3027C45.8711 14.543 45.7939 14.8057 45.6924 15.0908L45.3057 16.207H46.5537ZM49.9551 18H49.2549V14.3174H47.9951V13.7168H51.2148V14.3174H49.9551V18ZM52.5684 18H51.874V13.7168H54.291V14.3086H52.5684V15.6475H54.1826V16.2422H52.5684V18ZM58.8701 15.8525C58.8701 16.5498 58.6953 17.0918 58.3457 17.4785C57.998 17.8652 57.5049 18.0586 56.8662 18.0586C56.2197 18.0586 55.7227 17.8672 55.375 17.4844C55.0293 17.0996 54.8564 16.5537 54.8564 15.8467C54.8564 15.1396 55.0303 14.5967 55.3779 14.2178C55.7275 13.8389 56.2256 13.6494 56.8721 13.6494C57.5088 13.6494 58.001 13.8418 58.3486 14.2266C58.6963 14.6113 58.8701 15.1533 58.8701 15.8525ZM55.6006 15.8525C55.6006 16.3799 55.707 16.7803 55.9199 17.0537C56.1328 17.3252 56.4482 17.4609 56.8662 17.4609C57.2822 17.4609 57.5957 17.3262 57.8066 17.0566C58.0195 16.7871 58.126 16.3857 58.126 15.8525C58.126 15.3271 58.0205 14.9287 57.8096 14.6572C57.6006 14.3857 57.2881 14.25 56.8721 14.25C56.4521 14.25 56.1348 14.3857 55.9199 14.6572C55.707 14.9287 55.6006 15.3271 55.6006 15.8525ZM60.4902 15.709H60.9766C61.3027 15.709 61.5391 15.6484 61.6855 15.5273C61.832 15.4062 61.9053 15.2266 61.9053 14.9883C61.9053 14.7461 61.8262 14.5723 61.668 14.4668C61.5098 14.3613 61.2715 14.3086 60.9531 14.3086H60.4902V15.709ZM60.4902 16.2891V18H59.79V13.7168H61C61.5527 13.7168 61.9619 13.8203 62.2275 14.0273C62.4932 14.2344 62.626 14.5469 62.626 14.9648C62.626 15.498 62.3486 15.8779 61.7939 16.1045L63.0039 18H62.207L61.1816 16.2891H60.4902ZM65.4795 18L64.2373 14.4229H64.2139C64.2471 14.9541 64.2637 15.4521 64.2637 15.917V18H63.6279V13.7168H64.6152L65.8047 17.124H65.8223L67.0469 13.7168H68.0371V18H67.3633V15.8818C67.3633 15.6689 67.3682 15.3916 67.3779 15.0498C67.3896 14.708 67.3994 14.501 67.4072 14.4287H67.3838L66.0977 18H65.4795Z" fill="white"></path><defs><linearGradient id="paint0_linear" x1="17.4998" y1="4.81104" x2="17.4998" y2="18.1886" gradientUnits="userSpaceOnUse"><stop stop-color="#00EFD1"></stop><stop offset="1" stop-color="#00ACEA"></stop></linearGradient></defs></svg>
+                  </a>
+                  
+              </div>
+          </div>
+          <div class="col-lg-6 my-2 col-md-12">
+              <div style="display:flex; align-items: center; justify-content:space-between;">
+                  <p class="text-muted small">All rights reserved © 2021 Beurax.</p>
+                  <a href="#" class="text-muted d-flex align-items-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4571 9.63809V14.019L14.4952 11.8476L10.4571 9.63809Z"></path><path d="M17.981 0H6C2.70476 0 0 2.70476 0 6.01905V18C0 21.2952 2.70476 24 6 24H17.981C21.2952 24 24 21.2952 24 17.981V6.01905C24 2.70476 21.2952 0 17.981 0ZM19.4286 12.5905C19.4286 13.8476 19.3143 15.1238 19.3143 15.1238C19.3143 15.1238 19.181 16.1905 18.7429 16.6667C18.1714 17.2952 17.5429 17.2952 17.2571 17.3333C15.1619 17.4857 12.019 17.5048 12.019 17.5048C12.019 17.5048 8.11429 17.4476 6.91429 17.3333C6.59048 17.2762 5.82857 17.2952 5.25714 16.6667C4.8 16.1905 4.68571 15.1238 4.68571 15.1238C4.68571 15.1238 4.57143 13.8476 4.57143 12.5905V11.4095C4.57143 10.1524 4.68571 8.87619 4.68571 8.87619C4.68571 8.87619 4.81905 7.80952 5.25714 7.33333C5.82857 6.70476 6.45714 6.68571 6.74286 6.64762C8.85714 6.49524 12 6.47619 12 6.47619C12 6.47619 15.1429 6.49524 17.2381 6.64762C17.5238 6.68571 18.1714 6.70476 18.7429 7.31429C19.2 7.79048 19.3143 8.87619 19.3143 8.87619C19.3143 8.87619 19.4286 10.1524 19.4286 11.4095V12.5905Z"></path></svg>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>        <!-- END PAGE CONTAINER-->
+    </div>
+
+</div>
+
+
+        
+        <script src="https://beurax.site/assets/vendor/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://beurax.site/assets/js/customer.js"></script>
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="03519d52-5cee-44be-9719-03c5b631753c";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+
+<script>
+    const display = document.querySelector(".display-time");
+    setInterval( ()=>{
+        const time = new Date();
+        const hour = time.getHours();
+        const minute = time.getMinutes();
+        const seconds = time.getSeconds();
+        display.innerText = `${hour}:${minute}:${seconds}`;
+    },1000);
+
+
+    /** Toggle Blocks**/
+    const selector = (name) =>{
+        return document.querySelector(name)
+    }
+    const selectors = (name) =>{
+        return document.querySelectorAll(name)
+    }
+
+    const optionBtn = selector("#toggleBtn");
+    const menuBtn = selector("#menuBtn");
+    const menu = selectors(".menu-sidebar2")[1];
+    const option = selector(".setting-menu");
+
+    menuBtn.onclick = () =>{
+        menu.classList.toggle("show-sidebar");
+    }
+
+    optionBtn.onclick = () =>{
+        option.classList.toggle("show-sidebar");
+    }
+
+    /** End Toggle Blocks**/
+</script>
+
+<!-- Jquery JS-->
+
+
+<!-- Bootstrap JS-->
+<script src="https://beurax.site/assets/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="https://beurax.site/assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<!-- Vendor JS       -->
+<script src="https://beurax.site/assets/vendor/slick/slick.min.js">
+</script>
+<script src="https://beurax.site/assets/vendor/wow/wow.min.js"></script>
+<script src="https://beurax.site/assets/vendor/animsition/animsition.min.js"></script>
+<script src="https://beurax.site/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+</script>
+<script src="https://beurax.site/assets/vendor/counter-up/jquery.waypoints.min.js"></script>
+<script src="https://beurax.site/assets/vendor/counter-up/jquery.counterup.min.js">
+</script>
+<script src="https://beurax.site/assets/vendor/circle-progress/circle-progress.min.js"></script>
+<script src="https://beurax.site/assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="https://beurax.site/assets/vendor/chartjs/Chart.bundle.min.js"></script>
+<script src="https://beurax.site/assets/vendor/select2/select2.min.js">
+</script>
+<script src="https://beurax.site/assets/vendor/vector-map/jquery.vmap.js"></script>
+<script src="https://beurax.site/assets/vendor/vector-map/jquery.vmap.min.js"></script>
+<script src="https://beurax.site/assets/vendor/vector-map/jquery.vmap.sampledata.js"></script>
+<script src="https://beurax.site/assets/vendor/vector-map/jquery.vmap.world.js"></script>
+
+<!-- Main JS-->
+<script src="https://beurax.site/assets/js/main.js"></script>        <!-- END PAGE CONTAINER-->
+</body>
+
+</html>
+<!-- end document-->
